@@ -1,0 +1,31 @@
+'Settings ':
+  MainFrameX: 788
+  MainFrameY: 260
+  OBSFrameX: 344
+  OBSFrameY: 1
+  OBSState: true
+  TimerSec: 15
+  TimerMin: 0
+  TimerH: 0
+  TimerPlus: false
+  TimerRunning: false
+  TimerSetting: 1
+  AudioState: true
+  AudioMode: SpaceX
+' ': ' '
+'  ': ' '
+'   ': ' '
+'Default ':
+  MainFrameX: 760
+  MainFrameY: 465
+  OBSFrameX: 808
+  OBSFrameY: 513
+  OBSState: false
+  TimerSec: 30
+  TimerMin: 0
+  TimerH: 0
+  TimerPlus: false
+  TimerRunning: false
+  TimerSetting: 2
+  AudioState: true
+  AudioMode: SpaceX
