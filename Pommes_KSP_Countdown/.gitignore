@@ -1,2 +1,4 @@
 /target/*
 /bin/*
+/resources/audio/*
+/data/*
