@@ -53,7 +53,7 @@ public class MainFrame extends JFrame {
 		Timer.setLocation(Components.TimerPoint());
 		Timer.setSize(Components.TimerSize());
 		Timer.setFont(Components.TimerFont());
-		Timer.setForeground(controller.getSchedulerState().getTimerColor());
+		Timer.setForeground(controller.getScheduler().getState().getTimerColor());
 		Timer.setText("T- " + controller.getDurationPresets().getButtonText());
 		
 		
@@ -337,9 +337,8 @@ public class MainFrame extends JFrame {
 		}
 	}
 	
-	public void updateTimeDisplay(){
+	public void updateTimeDisplay(SchedulerState state){
 		String timerText = controller.getScheduler().getFormattedTimer();
-		SchedulerState state = controller.getSchedulerState();
 		
 		Timer.setText(timerText);
 		Timer.setForeground(state.getTimerColor());

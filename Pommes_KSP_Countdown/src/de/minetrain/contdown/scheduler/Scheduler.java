@@ -11,10 +11,12 @@ public class Scheduler {
 	private boolean running = false;
 	private Duration duration;
 	private Controller controller;
+	private SchedulerState schedulerState;
 	
 	public Scheduler(Controller controller) {
 		this.controller = controller;
 		this.duration = controller.getDurationPresets().getDuration();
+		this.schedulerState = SchedulerState.RESET;
 		createThread();
 	}
 	
@@ -22,7 +24,7 @@ public class Scheduler {
 		new Thread(() -> {
 			while (true) {
 				if (running) {
-					controller.setSchedulerState(SchedulerState.RUNNING);
+					setState(SchedulerState.RUNNING);
 					Optional<AudioFiles> audioFile = AudioFiles.getByDuration(duration);
 					if(audioFile.isPresent()){
 						audioFile.get().playSound(controller.getAudioMode());
@@ -56,7 +58,7 @@ public class Scheduler {
 	public void reset(Duration duration){
 		this.running = false;
 		this.duration = duration;
-		controller.setSchedulerState(SchedulerState.RESET);
+		setState(SchedulerState.RESET);
 
 //		MainFrame.Timer.setText(Timer());
 //		OBSFrame.Timer.setText(Timer());
@@ -66,21 +68,30 @@ public class Scheduler {
 	
 	public void start() {
 		this.running = true;
-		controller.setSchedulerState(SchedulerState.RUNNING);
+		setState(SchedulerState.RUNNING);
 	}
 	
 	public void pause() {
-		if(controller.getSchedulerState() == SchedulerState.RESET){
+		if(getState() == SchedulerState.RESET){
 			return;
 		}
 		
 		this.running = false;
-		controller.setSchedulerState(SchedulerState.PAUSED);
+		setState(SchedulerState.PAUSED);
 		AudioFiles.HOLD.playSound(controller.getAudioMode());
 	}
 	
 	public void resume(){
 		this.running = true;
+	}
+	
+	public SchedulerState getState() {
+		return schedulerState;
+	}
+
+	public void setState(SchedulerState state) {
+		this.schedulerState = state;
+		controller.getMainFrame().updateTimeDisplay(state);
 	}
 
 }

@@ -9,7 +9,6 @@ import de.minetrain.contdown.scheduler.Scheduler;
 
 public class Controller {
 	private boolean muteAudio = false;
-	private SchedulerState schedulerState = SchedulerState.RESET;
 	private AudioType audioMode = AudioType.getDefault();
 	private DurationPresets durationPresets = DurationPresets.SHORT;
 	
@@ -27,8 +26,13 @@ public class Controller {
 		return scheduler;
 	}
 	
-	public void resetTimer(){
-		scheduler.reset(durationPresets.getDuration());
+	public MainFrame getMainFrame() {
+		return mainFrame;
+	}
+	
+	public boolean toggleOBSFrame(){
+		obsFrame.setVisible(!obsFrame.isVisible());
+		return obsFrame.isVisible();
 	}
 	
 	/**
@@ -47,35 +51,22 @@ public class Controller {
 		return muteAudio;
 	}
 	
-	public boolean toggleOBSFrame(){
-		obsFrame.setVisible(!obsFrame.isVisible());
-		return obsFrame.isVisible();
-	}
-
 	public DurationPresets getDurationPresets() {
 		return durationPresets;
 	}
 
 	public void setDurationPresets(DurationPresets durationPresets) {
 		this.durationPresets = durationPresets;
-		if(schedulerState == SchedulerState.RESET){
+		if(scheduler.getState() == SchedulerState.RESET){
 			resetTimer();
 		}
 	}
-
-	public SchedulerState getSchedulerState() {
-		return schedulerState;
-	}
-
-	public void setSchedulerState(SchedulerState counterState) {
-		this.schedulerState = counterState;
-		getMainFrame().updateTimeDisplay();
-	}
-
-	public MainFrame getMainFrame() {
-		return mainFrame;
+	
+	public void resetTimer(){
+		scheduler.reset(durationPresets.getDuration());
 	}
 	
+
 	
 	
 }

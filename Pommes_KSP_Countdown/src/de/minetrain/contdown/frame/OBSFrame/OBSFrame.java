@@ -47,13 +47,13 @@ public class OBSFrame extends JFrame{
 		Timer.setLocation(5, 2);
 		Timer.setSize(305, 55);
 		Timer.setFont(new Font("ARIAL", Font.PLAIN, 55));
-		if (controller.getSchedulerState() == SchedulerState.RESET) {
+		if (controller.getScheduler().getState() == SchedulerState.RESET) {
 			Timer.setForeground(new Color(200, 000, 000));
 		}
-		if (controller.getSchedulerState() == SchedulerState.RUNNING) {
+		if (controller.getScheduler().getState() == SchedulerState.RUNNING) {
 			Timer.setForeground(new Color(000, 200, 000));
 		}
-		if (controller.getSchedulerState() == SchedulerState.PAUSED) {
+		if (controller.getScheduler().getState() == SchedulerState.PAUSED) {
 			Timer.setForeground(new Color(255, 136, 000));
 		}
 		Timer.setText("T- 00:00:00");
