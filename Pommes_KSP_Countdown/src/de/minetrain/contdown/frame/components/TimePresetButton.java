@@ -1,7 +1,6 @@
 package de.minetrain.contdown.frame.components;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -11,12 +10,15 @@ import javax.swing.JButton;
 
 import de.minetrain.contdown.enums.DurationPresets;
 import de.minetrain.contdown.frame.MainFrame;
+import de.minetrain.contdown.frame.scaling.Dimension;
+import de.minetrain.contdown.frame.scaling.Location;
+import de.minetrain.contdown.frame.scaling.Size;
 
 public class TimePresetButton extends JButton {
 	private static final long serialVersionUID = -7368057525502275053L;
 	
-	private static final Font FONT = new Font("ARIAL", Font.PLAIN, 10);
-	private static final Dimension SIZE = new Dimension(100, 15);
+	private static final Font FONT = new Font("ARIAL", Font.PLAIN, Size.of(10));
+	private static final java.awt.Dimension SIZE = Dimension.of(100, 15);
 	
 	private final DurationPresets preset;
 	
@@ -51,38 +53,28 @@ public class TimePresetButton extends JButton {
 	}
 	
 	public Point timerButtonPoint(){
-		Point point = new Point();
-
 		switch (preset) {
 		case VERY_SHORT:
-			point.setLocation(280, 5);
-			break;
+			return Location.of(280, 5);
 			
 		case SHORT:
-			point.setLocation(280, 25);
-			break;
+			return Location.of(280, 25);
 			
 		case DEFAULT:
-			point.setLocation(280, 45);
-			break;
+			return Location.of(280, 45);
 			
 		case LONG:
-			point.setLocation(175, 5);
-			break;
+			return Location.of(175, 5);
 			
 		case VERY_LONG:
-			point.setLocation(175, 25);
-			break;
+			return Location.of(175, 25);
 			
 		case EXTREM_LONG:
-			point.setLocation(175, 45);
-			break;
+			return Location.of(175, 45);
 			
 		default:
-			break;
-		};
-		
-		return point;
+			return Location.of(0, 0);
+		}
 	}
 	
 	

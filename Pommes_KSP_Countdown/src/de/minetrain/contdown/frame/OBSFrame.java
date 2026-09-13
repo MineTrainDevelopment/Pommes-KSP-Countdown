@@ -1,7 +1,6 @@
 package de.minetrain.contdown.frame;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -27,7 +26,7 @@ public class OBSFrame extends JFrame{
 	public OBSFrame(Scheduler scheduler) {
 		super("OBS countdown");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(305, 55));
+		setSize(305, 55);
 		getContentPane().setBackground(new Color(000, 000, 000));
 		setAlwaysOnTop(true);
 		setFocusable(true);

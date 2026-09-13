@@ -1,9 +1,7 @@
 package de.minetrain.contdown.frame;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,6 +15,9 @@ import de.minetrain.contdown.enums.DurationPresets;
 import de.minetrain.contdown.enums.TimerActionButtonType;
 import de.minetrain.contdown.frame.components.TimePresetButton;
 import de.minetrain.contdown.frame.components.TimerActionButton;
+import de.minetrain.contdown.frame.scaling.Dimension;
+import de.minetrain.contdown.frame.scaling.Location;
+import de.minetrain.contdown.frame.scaling.Size;
 import de.minetrain.contdown.main.Controller;
 import de.minetrain.contdown.main.KerbalCountMain;
 import de.minetrain.contdown.scheduler.Scheduler;
@@ -24,8 +25,11 @@ import de.minetrain.contdown.scheduler.Scheduler;
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 7916532940790382122L;
 	private ArrayList<TimePresetButton> timerButtons = new ArrayList<>();
-	public JLabel timer;
+	private JLabel timer;
 	static ImageIcon PNG = new ImageIcon(KerbalCountMain.FILE_DIRECTORY + "icons\\Pommes.png");
+	
+	private static final String FONT_NAME = "ARIAL";
+	private static final int FONT_STYLE = Font.PLAIN;
 	
 	private Controller controller;
 	
@@ -34,7 +38,7 @@ public class MainFrame extends JFrame {
 		this.controller = controller;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(400, 150));
+		setSize(Dimension.of(400, 150));
 		getContentPane().setBackground(new Color(00,80,80));
 		setAlwaysOnTop(true);
 		setFocusable(true);
@@ -44,9 +48,9 @@ public class MainFrame extends JFrame {
 		setIconImage(PNG.getImage());
 		
 		timer = new JLabel();
-		timer.setLocation(new Point(5, 2));
-		timer.setSize(new Dimension(305, 30));
-		timer.setFont(new Font("ARIAL", Font.PLAIN, 30));
+		timer.setLocation(Location.of(5, 2));
+		timer.setSize(Dimension.of(305, 30));
+		timer.setFont(new Font(FONT_NAME, FONT_STYLE, Size.of(30)));
 		timer.setForeground(controller.getScheduler().getState().getTimerColor());
 		timer.setText(controller.getScheduler().getFormattedTimer());
 		
@@ -112,10 +116,10 @@ public class MainFrame extends JFrame {
 	
 	public JButton getAudioModeToggle() {
 		JButton button = new JButton();
-		button.setFont(new Font("ARIAL",Font.PLAIN, 9));
+		button.setFont(new Font(FONT_NAME, FONT_STYLE, Size.of(9)));
 		button.setText(controller.getAudioMode().getName());
-		button.setSize(new Dimension(80, 25));
-		button.setLocation(new Point(70, 82));
+		button.setSize(Dimension.of(80, 25));
+		button.setLocation(Location.of(70, 82));
 		button.setBackground(new Color(000, 200, 200));
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -129,10 +133,10 @@ public class MainFrame extends JFrame {
 	
 	public JButton getAudioToggle() {
 		JButton button = new JButton();
-		button.setFont(new Font("ARIAL", Font.PLAIN, 9));
+		button.setFont(new Font(FONT_NAME, FONT_STYLE, Size.of(9)));
 		button.setText("Audio");
-		button.setSize(new Dimension(60, 25));
-		button.setLocation(new Point(05, 82));
+		button.setSize(Dimension.of(60, 25));
+		button.setLocation(Location.of(05, 82));
 		button.setBackground(new Color(000, 200, 000));
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -150,11 +154,11 @@ public class MainFrame extends JFrame {
 	
 	public JButton getToggleOBS() {
 		JButton button = new JButton();
-		button.setFont(new Font("ARIAL", Font.PLAIN, 8));
+		button.setFont(new Font(FONT_NAME, FONT_STYLE, Size.of(8)));
 		button.setText("OBS");
-		button.setSize(new Dimension(50, 25));
+		button.setSize(Dimension.of(50, 25));
 		button.setBackground(new Color(200, 000, 000));
-		button.setLocation(new Point(330, 82));
+		button.setLocation(Location.of(330, 82));
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
