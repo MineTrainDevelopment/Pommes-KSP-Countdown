@@ -1,10 +1,9 @@
 package de.minetrain.contdown.main;
 
 import de.minetrain.contdown.enums.AudioType;
-import de.minetrain.contdown.enums.SchedulerState;
 import de.minetrain.contdown.enums.DurationPresets;
-import de.minetrain.contdown.frame.MainFrame.MainFrame;
-import de.minetrain.contdown.frame.OBSFrame.OBSFrame;
+import de.minetrain.contdown.enums.SchedulerState;
+import de.minetrain.contdown.frame.UserInterface;
 import de.minetrain.contdown.scheduler.Scheduler;
 
 public class Controller {
@@ -13,26 +12,19 @@ public class Controller {
 	private DurationPresets durationPresets = DurationPresets.SHORT;
 	
 	private Scheduler scheduler;
-	private OBSFrame obsFrame;
-	private MainFrame mainFrame;
+	private UserInterface userInterface;
 	
 	public Controller() {
 		this.scheduler = new Scheduler(this);
-		this.obsFrame = new OBSFrame(this);
-		this.mainFrame = new MainFrame(this, obsFrame);
+		this.userInterface = new UserInterface(this);
 	}
 	
 	public Scheduler getScheduler() {
 		return scheduler;
 	}
 	
-	public MainFrame getMainFrame() {
-		return mainFrame;
-	}
-	
-	public boolean toggleOBSFrame(){
-		obsFrame.setVisible(!obsFrame.isVisible());
-		return obsFrame.isVisible();
+	public UserInterface getUserInterface() {
+		return userInterface;
 	}
 	
 	/**
@@ -48,6 +40,11 @@ public class Controller {
 	}
 	
 	public boolean toggleMuteAudio() {
+		this.muteAudio = !this.muteAudio;
+		return muteAudio;
+	}
+	
+	public boolean isMuteAudio() {
 		return muteAudio;
 	}
 	

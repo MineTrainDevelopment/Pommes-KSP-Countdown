@@ -1,6 +1,7 @@
-package de.minetrain.contdown.frame.OBSFrame;
+package de.minetrain.contdown.frame.second_frame;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -10,13 +11,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import de.minetrain.contdown.enums.SchedulerState;
-import de.minetrain.contdown.main.Controller;
 import de.minetrain.contdown.main.KerbalCountMain;
+import de.minetrain.contdown.scheduler.Scheduler;
 
 public class OBSFrame extends JFrame{
 	private static final long serialVersionUID = -60212138807002291L;
-	public JLabel Timer;
+	private JLabel timer;
 	private JLabel border;
 
 	private static final ImageIcon BORDER_PNG = new ImageIcon(
@@ -24,10 +24,10 @@ public class OBSFrame extends JFrame{
 	private static final ImageIcon ICON_PNG = new ImageIcon(
 			KerbalCountMain.FILE_DIRECTORY + "icons\\Pommes.png");
 	
-	public OBSFrame(Controller controller) {
+	public OBSFrame(Scheduler scheduler) {
 		super("OBS countdown");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(Components.FrameSize());
+		setSize(new Dimension(305, 55));
 		getContentPane().setBackground(new Color(000, 000, 000));
 		setAlwaysOnTop(true);
 		setFocusable(true);
@@ -43,26 +43,18 @@ public class OBSFrame extends JFrame{
 		border.setSize(320, 55);
 		border.addMouseMotionListener(new DragListener());
 		
-		Timer = new JLabel();
-		Timer.setLocation(5, 2);
-		Timer.setSize(305, 55);
-		Timer.setFont(new Font("ARIAL", Font.PLAIN, 55));
-		if (controller.getScheduler().getState() == SchedulerState.RESET) {
-			Timer.setForeground(new Color(200, 000, 000));
-		}
-		if (controller.getScheduler().getState() == SchedulerState.RUNNING) {
-			Timer.setForeground(new Color(000, 200, 000));
-		}
-		if (controller.getScheduler().getState() == SchedulerState.PAUSED) {
-			Timer.setForeground(new Color(255, 136, 000));
-		}
-		Timer.setText("T- 00:00:00");
+		timer = new JLabel();
+		timer.setLocation(5, 2);
+		timer.setSize(305, 55);
+		timer.setFont(new Font("ARIAL", Font.PLAIN, 55));
+		timer.setForeground(scheduler.getState().getTimerColor());
+		timer.setText(scheduler.getFormattedTimer());
 		
 		add(border);
-		add(Timer);
+		add(timer);
 		setVisible(false);
-		
 	}
+	
 
 	private class DragListener extends MouseMotionAdapter {
 		@Override
@@ -70,5 +62,10 @@ public class OBSFrame extends JFrame{
 			Point currentPt = e.getLocationOnScreen();
 			setLocation((int) currentPt.getX() - 152, (int) currentPt.getY() - 27);
 		}
+	}
+	
+	public void updateTimeDisplay(Scheduler scheduler){
+		timer.setText(scheduler.getFormattedTimer());
+		timer.setForeground(scheduler.getState().getTimerColor());
 	}
 }

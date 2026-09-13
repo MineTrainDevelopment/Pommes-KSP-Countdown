@@ -26,7 +26,7 @@ public class Scheduler {
 				if (running) {
 					setState(SchedulerState.RUNNING);
 					Optional<AudioFiles> audioFile = AudioFiles.getByDuration(duration);
-					if(audioFile.isPresent()){
+					if(audioFile.isPresent() && !controller.isMuteAudio()){
 						audioFile.get().playSound(controller.getAudioMode());
 					}
 					
@@ -72,13 +72,16 @@ public class Scheduler {
 	}
 	
 	public void pause() {
-		if(getState() == SchedulerState.RESET){
+		if(getState() == SchedulerState.RESET || getState() == SchedulerState.PAUSED){
 			return;
 		}
 		
 		this.running = false;
 		setState(SchedulerState.PAUSED);
-		AudioFiles.HOLD.playSound(controller.getAudioMode());
+		
+		if(!controller.isMuteAudio()){
+			AudioFiles.HOLD.playSound(controller.getAudioMode());
+		}
 	}
 	
 	public void resume(){
@@ -91,7 +94,7 @@ public class Scheduler {
 
 	public void setState(SchedulerState state) {
 		this.schedulerState = state;
-		controller.getMainFrame().updateTimeDisplay(state);
+		controller.getUserInterface().updateTimeDisplay(this);
 	}
 
 }
