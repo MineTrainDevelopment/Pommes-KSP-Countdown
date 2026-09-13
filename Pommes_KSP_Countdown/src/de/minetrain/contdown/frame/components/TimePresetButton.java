@@ -1,4 +1,4 @@
-package de.minetrain.contdown.frame.MainFrame;
+package de.minetrain.contdown.frame.components;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import de.minetrain.contdown.enums.DurationPresets;
+import de.minetrain.contdown.frame.MainFrame;
 
 public class TimePresetButton extends JButton {
 	private static final long serialVersionUID = -7368057525502275053L;

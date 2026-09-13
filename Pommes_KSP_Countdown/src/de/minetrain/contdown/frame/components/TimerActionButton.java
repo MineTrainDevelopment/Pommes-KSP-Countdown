@@ -1,4 +1,4 @@
-package de.minetrain.contdown.frame.MainFrame;
+package de.minetrain.contdown.frame.components;
 
 import java.awt.Dimension;
 import java.awt.Font;

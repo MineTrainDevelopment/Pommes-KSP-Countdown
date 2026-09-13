@@ -1,4 +1,4 @@
-package de.minetrain.contdown.frame.MainFrame;
+package de.minetrain.contdown.frame;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 
 import de.minetrain.contdown.enums.DurationPresets;
 import de.minetrain.contdown.enums.TimerActionButtonType;
+import de.minetrain.contdown.frame.components.TimePresetButton;
+import de.minetrain.contdown.frame.components.TimerActionButton;
 import de.minetrain.contdown.main.Controller;
 import de.minetrain.contdown.main.KerbalCountMain;
 import de.minetrain.contdown.scheduler.Scheduler;

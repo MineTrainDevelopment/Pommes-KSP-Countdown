@@ -1,4 +1,4 @@
-package de.minetrain.contdown.frame.second_frame;
+package de.minetrain.contdown.frame;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -1,7 +1,5 @@
 package de.minetrain.contdown.frame;
 
-import de.minetrain.contdown.frame.MainFrame.MainFrame;
-import de.minetrain.contdown.frame.second_frame.OBSFrame;
 import de.minetrain.contdown.main.Controller;
 import de.minetrain.contdown.scheduler.Scheduler;
 
