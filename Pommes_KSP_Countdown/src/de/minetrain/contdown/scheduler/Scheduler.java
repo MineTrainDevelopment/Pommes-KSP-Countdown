@@ -70,6 +70,10 @@ public class Scheduler {
 	}
 	
 	public void pause() {
+		if(controller.getSchedulerState() == SchedulerState.RESET){
+			return;
+		}
+		
 		this.running = false;
 		controller.setSchedulerState(SchedulerState.PAUSED);
 		AudioFiles.HOLD.playSound(controller.getAudioMode());
